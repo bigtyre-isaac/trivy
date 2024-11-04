@@ -1,0 +1,14 @@
+services:
+  scanning:
+    build:
+      context: ./trivy-api
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    env_file: .env
+    volumes:
+      - trivy-db:/root/.cache/trivy/db
+
+volumes:
+  trivy-db:
+    driver: local
